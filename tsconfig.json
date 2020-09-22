@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "./lib",
+    "strict": true,
+    "resolveJsonModule": true,
+    "sourceMap": true
+  },
+  "include": ["src", "src/audit/JSONStream.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}

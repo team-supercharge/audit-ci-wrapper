@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Audit config",
+  "description": "The configuration file for audit.",
+  "type": "object",
+  "properties": {
+    "severity": {
+      "description": "Level of severity that makes audit fail.",
+      "default": "critical",
+      "enum": ["critical", "high", "moderate", "low"],
+      "type": "string"
+    },
+    "ignoreDevelopmentDependencies": {
+      "description": "If true development dependencies will be ignored.",
+      "type": "boolean"
+    },
+    "reportType": {
+      "description": "The type of the output.",
+      "default": "text",
+      "enum": ["text", "json"],
+      "type": "string"
+    },
+    "npmExtraParams": {
+      "description": "Extra parameters can be passed to `npm audit`, like `['--registry', '<URL>']`",
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "whitelist": {
+      "description": "Object like `dependencies` of package.json. Key specifies a package name, the value is the whitelisted versions in semver format.",
+      "type": "object",
+			"additionalProperties": false,
+			"patternProperties": {
+				".+": {
+          "description": "Version in semver format.",
+          "default": "*",
+					"type": "string"
+				}
+			}
+    }
+  },
+  "required": [
+    "severity",
+    "ignoreDevelopmentDependencies",
+    "reportType"
+  ]
+}

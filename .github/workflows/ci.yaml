@@ -30,6 +30,8 @@ jobs:
           ${{ runner.os }}-
     - name: Install dependencies
       run: npm ci
+    - name: Lint commit messages
+      run: npm run commitlint
     - name: Lint
       run: npm run lint
     - name: Link

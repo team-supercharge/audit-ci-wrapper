@@ -11,7 +11,8 @@ export const generateConfig = async (args: ArgumentResult): Promise<void> => {
     console.log(`Generating new config file to ${fileName}.`);
   }
   const optionsWithSchema = {
-    $schema: './node_modules/audit-ci-wrapper/configschema.json',
+    $schema:
+      './node_modules/@team-supercharge/audit-ci-wrapper/configschema.json',
     ...defaultOptions,
   };
   writeFileAsync(fileName, JSON.stringify(optionsWithSchema, undefined, 2));

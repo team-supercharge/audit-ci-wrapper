@@ -39,4 +39,4 @@ jobs:
       env:
         CI: true
     - name: Run integration tests
-      run: npx audit-ci-wrapper
+      run: npx @team-supercharge/audit-ci-wrapper

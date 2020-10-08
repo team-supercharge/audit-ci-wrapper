@@ -1,6 +1,6 @@
-# audit-ci-wrapper
+# @team-supercharge/audit-ci-wrapper
 
-![Node.js Package](https://github.com/csutorasr/audit-ci-wrapper/workflows/Node.js%20Package/badge.svg)
+![Node.js Package](https://github.com/team-supercharge/audit-ci-wrapper/workflows/Node.js%20Package/badge.svg)
 
 This package wrappes the result of `npm audit` and creates a report.
 
@@ -13,28 +13,28 @@ Fails with exit code 1 if any package has vulnerabilities that matches the crite
 It can run without installation.
 
 ```bash
-npx audit-ci-wrapper
+npx @team-supercharge/audit-ci-wrapper
 ```
 
 Or can be added to the project.
 
 ```bash
-npx audit-ci-wrapper --install
-npm install --save-dev audit-ci-wrapper
+npx @team-supercharge/audit-ci-wrapper --install
+npm install --save-dev @team-supercharge/audit-ci-wrapper
 npm run audit
 ```
 
 It can be done manually. Install, generate an auditconfig file and add to the project.
 
 ```bash
-npm install --save-dev audit-ci-wrapper
-npx audit-ci-wrapper --generate-config
+npm install --save-dev @team-supercharge/audit-ci-wrapper
+npx @team-supercharge/audit-ci-wrapper --generate-config
 ```
 
 ```json
 {
   "scripts": {
-    "audit": "npx audit-ci-wrapper --config auditconfig.json"
+    "audit": "npx @team-supercharge/audit-ci-wrapper --config auditconfig.json"
   }
 }
 ```
@@ -46,7 +46,7 @@ npm run audit
 ## Options
 
 ```
-usage: audit-ci-wrapper [-h] [-c CONFIG] [-gc] [-i] [-q] [-v]
+usage: @team-supercharge/audit-ci-wrapper [-h] [-c CONFIG] [-gc] [-i] [-q] [-v]
 
 Audit wrapper application for npm.
 

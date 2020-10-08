@@ -16,8 +16,11 @@ export const install = async (args: ArgumentResult): Promise<void> => {
     return;
   }
   const json = JSON.parse((await readFileAsync(packageJson)).toString());
-  json.scripts.audit = 'npx audit-ci-wrapper --config auditconfig.json';
+  json.scripts.audit =
+    'npx @team-supercharge/audit-ci-wrapper --config auditconfig.json';
   await writeFileAsync(packageJson, JSON.stringify(json, undefined, 2));
   generateConfig(args);
-  console.log('Run `npm install --save-dev audit-ci-wrapper` to finish.');
+  console.log(
+    'Run `npm install --save-dev @team-supercharge/audit-ci-wrapper` to finish.'
+  );
 };

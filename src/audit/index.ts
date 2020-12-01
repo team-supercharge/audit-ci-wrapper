@@ -12,7 +12,7 @@ export const runAudit = (
   return new Promise((resolve, reject) => {
     let stderr = '';
 
-    const command = 'npm';
+    const command = /^win/.test(process.platform) ? 'npm.cmd' : 'npm';
     const command_args = ['audit', '--json'];
 
     if (options.npmExtraParams) {

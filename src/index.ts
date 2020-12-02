@@ -28,4 +28,5 @@ const args = parseArgs();
 })().catch((err) => {
   console.error('Error happened!');
   console.dir(err);
+  process.exit(1);
 });

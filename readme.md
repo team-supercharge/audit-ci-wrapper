@@ -78,3 +78,8 @@ The schema for the configfile can be found at `configschema.json`.
 To develop run `npm install`, `npm link` and `npm start`. This will run currently compiled version.
 
 To run the test run `npm test` or `npm test:dev` to watch for changes.
+
+
+## Release
+
+In order to properly generate changelog and version tags, run `npm run release` once `master` is ready for it. Publish action will be triggered when newly created tag is released manually on Github UI.

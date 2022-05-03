@@ -16,8 +16,8 @@
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
     "commitlint": "npx commitlint -f master -V",
-    "release": "npx standard-version",
-    "prerelease": "npx standard-version --prerelease alpha"
+    "create-release": "npx standard-version",
+    "create-prerelease": "npx standard-version --prerelease alpha"
   },
   "engines": {
     "npm": "7.x || 8.x"

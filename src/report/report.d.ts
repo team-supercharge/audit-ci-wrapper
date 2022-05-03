@@ -1,9 +1,9 @@
 import { ArgumentResult } from '../arguments';
 import { AuditOptions } from '../config';
-import { IAdvisory } from '../types/npm-audit';
+import { IVulnerability } from '../types/npm-audit';
 
 export type ReportFunction = (
   args: ArgumentResult,
   options: AuditOptions,
-  advisories: IAdvisory[]
+  advisories: IVulnerability[]
 ) => Promise<void>;

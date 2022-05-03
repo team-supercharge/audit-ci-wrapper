@@ -1,11 +1,12 @@
 import { ArgumentResult } from '../arguments';
 import { AuditOptions } from '../config';
-import { IAdvisory } from '../types/npm-audit';
+import { IVulnerability, SeverityType } from '../types/npm-audit';
 import { ReportFunction } from './report';
 import { red, yellow, gray, green, Chalk } from 'chalk';
 
-const severityColor: Record<'low' | 'moderate' | 'high' | 'critical', Chalk> = {
-  low: gray,
+const severityColor: Record<SeverityType, Chalk> = {
+  info: gray,
+  low: green,
   moderate: yellow,
   high: yellow,
   critical: red,
@@ -14,31 +15,19 @@ const severityColor: Record<'low' | 'moderate' | 'high' | 'critical', Chalk> = {
 export const report: ReportFunction = async (
   args: ArgumentResult,
   options: AuditOptions,
-  advisories: IAdvisory[]
+  vulnerabilities: IVulnerability[]
 ): Promise<void> => {
-  if (advisories.length === 0) {
+  if (vulnerabilities.length === 0) {
     console.log('No vulnerability is found.');
     return;
   }
   console.error('The following vulnerablitities are found:');
-  advisories.forEach((advisory) => {
-    const text = `${yellow(advisory.module_name)} Severity: ${severityColor[
-      advisory.severity
-    ](advisory.severity)}
-${advisory.url}
-${advisory.findings
-  .map(
-    (finding) =>
-      `@${green(finding.version)}
-${finding.dev ? 'devDep' : 'prodDep'}
-\t${finding.paths
-        .join('\n\t')
-        .replace(
-          new RegExp(advisory.module_name, 'g'),
-          red(advisory.module_name)
-        )}`
-  )
-  .join('\n')}`;
+  vulnerabilities.forEach((vulnerability) => {
+    const text = `${yellow(vulnerability.name)} Severity: ${severityColor[
+      vulnerability.severity
+    ](vulnerability.severity)}
+${vulnerability.nodes.map((node) => `@${green(node)}`).join('\n')}
+${vulnerability.fixAvailable ? 'fixable' : 'not fixable'}`;
     console.error(text.replace(new RegExp('\n', 'g'), '\n\t'));
   });
   process.exitCode = 1;

@@ -15,6 +15,13 @@ export const runAudit = (
     const command = /^win/.test(process.platform) ? 'npm.cmd' : 'npm';
     const command_args = ['audit', '--json'];
 
+    if (options.severity) {
+      command_args.push(`--audit-level=${options.severity}`);
+    }
+    if (options.ignoreDevelopmentDependencies) {
+      command_args.push('--only=prod');
+    }
+
     if (options.npmExtraParams) {
       command_args.push(...options.npmExtraParams);
     }

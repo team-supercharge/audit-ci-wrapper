@@ -8,6 +8,10 @@ This package wrappes the result of `npm audit` and creates a report.
 
 Fails with exit code 1 if any package has vulnerabilities that matches the criterias.
 
+## NPM version support
+
+This package supports NPM 7 and 8 from `2.0.0`. If you want to use it with NPM 6, then install the latest [`1.x`](https://github.com/team-supercharge/audit-ci-wrapper/tree/v1.x) version.
+
 ## Running
 
 It can run without installation.

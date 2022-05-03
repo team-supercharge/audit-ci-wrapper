@@ -1,6 +1,4 @@
 import * as childProcess from 'child_process';
-import * as JSONStream from 'JSONStream';
-import * as es from 'event-stream';
 import { AuditOptions } from '../config';
 import { IAudit } from '../types/npm-audit';
 import { ArgumentResult } from '../arguments';
@@ -11,6 +9,7 @@ export const runAudit = (
 ): Promise<IAudit> => {
   return new Promise((resolve, reject) => {
     let stderr = '';
+    let stdout = '';
 
     const command = /^win/.test(process.platform) ? 'npm.cmd' : 'npm';
     const command_args = ['audit', '--json'];
@@ -31,14 +30,10 @@ export const runAudit = (
       detached: false,
     });
 
-    let auditData: IAudit | null = null;
-
-    // Use stream processing of JSON data to be able to handle large data
-    audit_proc.stdout.pipe(JSONStream.parse()).pipe(
-      es.mapSync((data: IAudit) => {
-        auditData = data;
-      })
-    );
+    audit_proc.stdout.on('data', (data) => {
+      const holder = stdout;
+      stdout = holder.concat(data);
+    });
 
     audit_proc.stderr.on('data', (data) => {
       const holder = stderr;
@@ -50,13 +45,16 @@ export const runAudit = (
         console.error(`npm audit exited with code ${exit_code}.`);
       }
       if (
-        (stderr.length > 0 &&
-          stderr !==
-            'Debugger attached.\nWaiting for the debugger to disconnect...\n') ||
-        auditData === null ||
-        !!auditData.error
+        stderr.length > 0 &&
+        stderr !==
+          'Debugger attached.\nWaiting for the debugger to disconnect...\n'
       ) {
         reject(stderr);
+        return;
+      }
+      const auditData: IAudit = JSON.parse(stdout);
+      if (!!auditData.error) {
+        reject(auditData.error);
         return;
       }
       resolve(auditData);

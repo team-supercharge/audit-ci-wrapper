@@ -1,5 +1,5 @@
 import { ArgumentParser } from 'argparse';
-import { readFileSync } from 'fs';
+import { readFileSync } from 'node:fs';
 
 const version = JSON.parse(
   readFileSync(`${__dirname}/../package.json`).toString()

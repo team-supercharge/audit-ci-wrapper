@@ -1,35 +1,38 @@
-import * as fs from 'fs';
+import * as fs from 'node:fs';
 import { AuditOptions, defaultOptions } from './default-config';
 import { readConfig } from './read-config';
 
+let options: AuditOptions;
+
+jest.mock('node:fs');
+
 describe('Read config file', () => {
   let spy: jest.SpyInstance;
-  let options: AuditOptions;
   beforeEach(() => {
     options = defaultOptions;
-    spy = jest
-      .spyOn(fs, 'readFile')
-      .mockImplementation(
-        (
-          path: string | number | Buffer | URL,
-          callback: (err: NodeJS.ErrnoException | null, data: Buffer) => void
-        ) => {
-          if (path === 'aconfig.json') {
-            return callback(null, Buffer.from(JSON.stringify(options)));
-          }
-          return callback(
-            {
-              message: `ENOENT: no such file or directory, open '${path}'`,
-              name: 'Error',
-              code: 'ENOENT',
-              errno: -2,
-              syscall: 'open',
-              path: path.toString(),
-            },
-            Buffer.from('')
-          );
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    spy = fs.readFile.mockImplementation(
+      (
+        path: string | number | Buffer | URL,
+        callback: (err: NodeJS.ErrnoException | null, data: Buffer) => void
+      ) => {
+        if (path === 'aconfig.json') {
+          return callback(null, Buffer.from(JSON.stringify(options)));
         }
-      );
+        return callback(
+          {
+            message: `ENOENT: no such file or directory, open '${path}'`,
+            name: 'Error',
+            code: 'ENOENT',
+            errno: -2,
+            syscall: 'open',
+            path: path.toString(),
+          },
+          Buffer.from('')
+        );
+      }
+    );
   });
 
   it('should return default if no config is given', async () => {
@@ -67,9 +70,5 @@ describe('Read config file', () => {
       install: false,
     });
     expect(config.ignoreDevelopmentDependencies).toBe(true);
-  });
-
-  afterEach(() => {
-    spy.mockClear();
   });
 });

@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/team-supercharge/audit-ci-wrapper/compare/v1.0.2...v2.0.0) (2022-05-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* update node and npm version
+
+### Features
+
+* add npm 8 support ([fa16dc4](https://github.com/team-supercharge/audit-ci-wrapper/commit/fa16dc429e6ba6cb954136111f741c84b21227f1))
+* update node and npm version ([07ae97f](https://github.com/team-supercharge/audit-ci-wrapper/commit/07ae97f83bf52e5a628a1c4fbccb41b56bf7a1a3))
+* update packages and remove json stream ([5df853a](https://github.com/team-supercharge/audit-ci-wrapper/commit/5df853ad85ca74a232cffcace3017132f52d6d2c))
+
 ### [1.0.2](https://github.com/team-supercharge/audit-ci-wrapper/compare/v1.0.2-alpha.0...v1.0.2) (2020-12-02)
 
 ### [1.0.2-alpha.0](https://github.com/team-supercharge/audit-ci-wrapper/compare/v1.0.1...v1.0.2-alpha.0) (2020-12-02)

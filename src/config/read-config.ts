@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import * as fs from 'node:fs';
 import { promisify } from 'util';
 import { AuditOptions, defaultOptions } from './default-config';
 import { ArgumentResult } from '../arguments';

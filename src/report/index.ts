@@ -1,13 +1,13 @@
 import { ArgumentResult } from '../arguments';
 import { AuditOptions } from '../config';
-import { IAdvisory } from '../types/npm-audit';
+import { IVulnerability } from '../types/npm-audit';
 import { report as textReport } from './text';
 import { report as jsonReport } from './json';
 
 export const report = async (
   args: ArgumentResult,
   options: AuditOptions,
-  advisories: IAdvisory[]
+  advisories: IVulnerability[]
 ): Promise<void> => {
   switch (options.reportType) {
     case 'text':

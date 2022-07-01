@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/team-supercharge/audit-ci-wrapper/compare/v2.0.0...v2.1.0) (2022-07-01)
+
+
+### Features
+
+* add loglevel error ([fb70dfa](https://github.com/team-supercharge/audit-ci-wrapper/commit/fb70dfaa054e00e487cf3e343d20bbc98ea5f67b))
+
+
+### Bug Fixes
+
+* update vulnerable dependency ([d9cdc9f](https://github.com/team-supercharge/audit-ci-wrapper/commit/d9cdc9f6c7f0f2dd1a0d4278962995cf2831a3a3))
+
 ## [2.0.0](https://github.com/team-supercharge/audit-ci-wrapper/compare/v1.0.2...v2.0.0) (2022-05-03)
 
 

@@ -12,7 +12,7 @@ export const runAudit = (
     let stdout = '';
 
     const command = /^win/.test(process.platform) ? 'npm.cmd' : 'npm';
-    const command_args = ['audit', '--json'];
+    const command_args = ['audit', '--json', '--loglevel=error'];
 
     if (options.severity) {
       command_args.push(`--audit-level=${options.severity}`);

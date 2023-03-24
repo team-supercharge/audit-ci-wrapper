@@ -29,7 +29,8 @@
     "lib",
     "!*.map",
     "!*.d.ts",
-    "lib/index.d.ts"
+    "lib/index.d.ts",
+    "configschema.json"
   ],
   "keywords": [],
   "author": "",

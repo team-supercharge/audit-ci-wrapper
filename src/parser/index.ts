@@ -20,29 +20,39 @@ function removeByWhitelist(
     }
     return { ...acc, [module]: whitelistedVersion };
   }, {});
-  vulnerabilities = vulnerabilities.map((vulnerability) => {
-    const module = vulnerability.name;
-    if (!(module in validSemverWhiteList)) {
-      return vulnerability;
+  let lastIgnoredModulesLength = -1;
+  while (
+    lastIgnoredModulesLength !== Object.keys(validSemverWhiteList).length
+  ) {
+    lastIgnoredModulesLength = Object.keys(validSemverWhiteList).length;
+    vulnerabilities = vulnerabilities.map((vulnerability) => {
+      return {
+        ...vulnerability,
+        via: vulnerability.via.filter((via) => {
+          if (typeof via === 'string') {
+            return !(via in validSemverWhiteList);
+          }
+          if (!(via.name in validSemverWhiteList)) {
+            return true;
+          }
+          return semver.intersects(via.range, validSemverWhiteList[via.name]);
+        }),
+      };
+    });
+    for (const vulnerability of vulnerabilities.filter(
+      (v) => v.via.length === 0
+    )) {
+      validSemverWhiteList[vulnerability.name] = vulnerability.range;
+      if (!quiet) {
+        console.log(
+          `Ignoring ${vulnerability.name} as all findings are whitelisted.`
+        );
+      }
     }
-    return {
-      ...vulnerability,
-      via: vulnerability.via.filter(
-        (via) => !semver.intersects(via.range, validSemverWhiteList[module])
-      ),
-    };
-  });
-  vulnerabilities = vulnerabilities.filter((vulnerability) => {
-    if (vulnerability.via.length !== 0) {
-      return true;
-    }
-    if (!quiet) {
-      console.log(
-        `Ignoring ${vulnerability.name} as all findings are whitelisted.`
-      );
-    }
-    return false;
-  });
+    vulnerabilities = vulnerabilities.filter(
+      (vulnerability) => vulnerability.via.length !== 0
+    );
+  }
   return vulnerabilities;
 }
 

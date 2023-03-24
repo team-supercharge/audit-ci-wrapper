@@ -19,7 +19,7 @@ export interface IVulnerability {
   name: string;
   severity: SeverityType;
   isDirect: boolean;
-  via: IVulnerabilityVia[];
+  via: (IVulnerabilityVia | string)[];
   effects: string[];
   range: string;
   nodes: string[];

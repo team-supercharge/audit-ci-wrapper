@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/team-supercharge/audit-ci-wrapper/compare/v2.1.0...v2.2.0) (2023-03-24)
+
+
+### Features
+
+* add root cause detection to reporter ([0b0bd75](https://github.com/team-supercharge/audit-ci-wrapper/commit/0b0bd75b86d6c2b0af7a41ccc0c217515563591f))
+
+
+### Bug Fixes
+
+* add config schema to the package ([f883e56](https://github.com/team-supercharge/audit-ci-wrapper/commit/f883e566a95390a21e7bcc92bfd6cc38eafd8941))
+* filter vulnerabilities by level ([57c4926](https://github.com/team-supercharge/audit-ci-wrapper/commit/57c4926fca011613195161879beb672c9c5a94df))
+
 ## [2.1.0](https://github.com/team-supercharge/audit-ci-wrapper/compare/v2.0.0...v2.1.0) (2022-07-01)
 
 

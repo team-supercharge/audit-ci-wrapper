@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/team-supercharge/audit-ci-wrapper/compare/v2.2.0...v3.0.0) (2023-03-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* use allowlist for the origin of the vulnerabilities
+
+### Bug Fixes
+
+* use allowlist for the origin of the vulnerabilities ([d372de4](https://github.com/team-supercharge/audit-ci-wrapper/commit/d372de4e5c3a3590fe45d7baf1eb5044dfd9d421))
+
 ## [2.2.0](https://github.com/team-supercharge/audit-ci-wrapper/compare/v2.1.0...v2.2.0) (2023-03-24)
 
 

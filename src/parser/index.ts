@@ -1,7 +1,7 @@
 import * as semver from 'semver';
 import { ArgumentResult } from '../arguments';
 import { AuditOptions } from '../config';
-import { IAudit, IVulnerability } from '../types/npm-audit';
+import { IAudit, IVulnerability, SeverityType } from '../types/npm-audit';
 
 function removeByWhitelist(
   vulnerabilities: IVulnerability[],
@@ -46,12 +46,36 @@ function removeByWhitelist(
   return vulnerabilities;
 }
 
+function compareSeverity(
+  severity: SeverityType,
+  severity1: 'low' | 'moderate' | 'high' | 'critical'
+) {
+  const severityMap = {
+    info: 0,
+    low: 1,
+    moderate: 2,
+    high: 3,
+    critical: 4,
+  };
+  return severityMap[severity] - severityMap[severity1];
+}
+
+function removeBySeverity(
+  vulnerabilities: IVulnerability[],
+  severity: 'low' | 'moderate' | 'high' | 'critical'
+) {
+  return vulnerabilities.filter((vulnerability) => {
+    return compareSeverity(vulnerability.severity, severity) >= 0;
+  });
+}
+
 export const parse = async (
   result: IAudit,
   args: ArgumentResult,
   config: AuditOptions
 ): Promise<IVulnerability[]> => {
   let vulnerabilities = Object.values(result.vulnerabilities);
+  vulnerabilities = removeBySeverity(vulnerabilities, config.severity);
   if (config.whitelist !== undefined) {
     vulnerabilities = removeByWhitelist(
       vulnerabilities,

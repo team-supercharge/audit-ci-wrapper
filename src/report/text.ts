@@ -27,7 +27,11 @@ export const report: ReportFunction = async (
       vulnerability.severity
     ](vulnerability.severity)}
 ${vulnerability.nodes.map((node) => `@${green(node)}`).join('\n')}
-${vulnerability.fixAvailable ? 'fixable' : 'not fixable'}`;
+${vulnerability.fixAvailable ? 'fixable' : 'not fixable'}${
+      vulnerability.via.filter((via) => typeof via !== 'string').length > 0
+        ? red(' probable root cause')
+        : ''
+    }`;
     console.error(text.replace(new RegExp('\n', 'g'), '\n\t'));
   });
   process.exitCode = 1;

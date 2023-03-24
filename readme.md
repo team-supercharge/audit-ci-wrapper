@@ -2,11 +2,15 @@
 
 ![Node.js Package](https://github.com/team-supercharge/audit-ci-wrapper/workflows/Node.js%20Package/badge.svg)
 
-This package wrappes the result of `npm audit` and creates a report.
+## Features
+
+This package wraps the result of `npm audit` and creates a report.
 
 `json` and `text` report types currently supported.
 
-Fails with exit code 1 if any package has vulnerabilities that matches the criterias.
+Fails with exit code 1 if any package has vulnerabilities that matches the criteria.
+
+The text reporter writes `probable root cause` text to the output, if that package is the one that causes the error.
 
 ## NPM version support
 

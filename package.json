@@ -8,6 +8,7 @@
   "scripts": {
     "start": "tsc --watch",
     "build": "tsc",
+    "audit": "npm run build && node lib/index.js",
     "lint": "eslint 'src/**/*.{js,ts}'",
     "lint:fix": "npm run lint -- --quiet --fix",
     "test": "jest --config jestconfig.json",

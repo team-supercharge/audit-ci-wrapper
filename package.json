@@ -20,7 +20,7 @@
     "create-prerelease": "npx standard-version --prerelease alpha"
   },
   "engines": {
-    "npm": "7.x || 8.x"
+    "npm": "7.x || 8.x || 9.x"
   },
   "publishConfig": {
     "access": "public"

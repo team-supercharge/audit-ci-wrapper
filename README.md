@@ -14,7 +14,7 @@ The text reporter writes `probable root cause` text to the output, if that packa
 
 ## NPM version support
 
-This package supports NPM 7 and 8 from `2.0.0`. If you want to use it with NPM 6, then install the latest [`1.x`](https://github.com/team-supercharge/audit-ci-wrapper/tree/v1.x) version.
+This package requires at least NPM 7 since `>3.0.0`. If you want to use it with NPM 6, then install the latest [`1.x`](https://github.com/team-supercharge/audit-ci-wrapper/tree/v1.x) version.
 
 ## Running
 
@@ -86,7 +86,6 @@ The schema for the configfile can be found at `configschema.json`.
 To develop run `npm install`, `npm link` and `npm start`. This will run currently compiled version.
 
 To run the test run `npm test` or `npm test:dev` to watch for changes.
-
 
 ## Release
 

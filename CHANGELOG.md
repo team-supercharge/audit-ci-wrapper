@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/team-supercharge/audit-ci-wrapper/compare/v3.0.0...v3.1.0) (2023-05-11)
+
+
+### Features
+
+* allow usage with npm 9 ([b5d08a3](https://github.com/team-supercharge/audit-ci-wrapper/commit/b5d08a349299c4e8b7830012468f2129c0ed23ab))
+
 ## [3.0.0](https://github.com/team-supercharge/audit-ci-wrapper/compare/v2.2.0...v3.0.0) (2023-03-24)
 
 

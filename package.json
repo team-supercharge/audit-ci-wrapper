@@ -37,8 +37,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@commitlint/cli": "16.2.4",
-    "@commitlint/config-conventional": "16.2.4",
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
     "@types/argparse": "2.0.10",
     "@types/event-stream": "4.0.0",
     "@types/jest": "27.5.0",
@@ -64,7 +64,7 @@
     }
   },
   "lint-staged": {
-    "*.{ts}": [
+    "*.ts": [
       "eslint --fix"
     ]
   },
